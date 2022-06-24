@@ -7,7 +7,6 @@
 - Please use the following data structures for this project. Don’t forget to include them in your header file.
 
  >
-
  	/**
 	* struct stack_s - doubly linked list representation of a stack (or queue)
 	* @n: integer
@@ -57,8 +56,8 @@
 
 - Files containing Monty byte codes usually have the .m extension. Most of the industry uses this standard but it is not required by the specification of the language. There is not more than one instruction per line. There can be any number of spaces before or after the opcode and its argument:
 
- > julien@ubuntu:~/monty$ cat -e bytecodes/000.m
- 	
+ > 
+ 	julien@ubuntu:~/monty$ cat -e bytecodes/000.m
 	push 0$
 	push 1$
 	push 2$
@@ -72,7 +71,6 @@
 - Monty byte code files can contain blank lines (empty or made of spaces only, and any additional text after the opcode or its required argument is not taken into account:
 
  > 
- 
 	julien@ubuntu:~/monty$ cat -e bytecodes/001.m
 	push 0 Push 0 onto the stack$
 	push 1 Push 1 onto the stack$
@@ -107,5 +105,54 @@
 - If you can’t malloc anymore, print the error message Error: malloc failed, followed by a new line, and exit with status EXIT_FAILURE.
 - You have to use malloc and free and are not allowed to use any other function from man malloc (realloc, calloc, …)
 
-#Tasks
+# Tasks
+0. push, pall
 
+Implement the push and pall opcodes
+> The push opcode
+
+The opcode push pushes an element to the stack.
+- Usage: push <int>
+	- where <int> is an integer
+- if <int> is not an integer or if there is no argument given to push, print the error message L<line_number>: usage: push integer, followed by a new line, and exit with the status EXIT_FAILURE
+	- where is the line number in the file
+- You won’t have to deal with overflows. Use the atoi function
+> The pall opcode
+
+- The opcode pall prints all the values on the stack, starting from the top of the stack.
+	- Usage pall
+	- Format: see example
+	- If the stack is empty, don’t print anything
+ >
+	julien@ubuntu:~/monty$ cat -e bytecodes/00.m
+	push 1$
+	push 2$
+	push 3$
+	pall$
+	julien@ubuntu:~/monty$ ./monty bytecodes/00.m
+	3
+	2
+	1
+	julien@ubuntu:~/monty$
+
+1. pint
+- Implement the pint opcode.
+
+> The pint opcode
+
+The opcode pint prints the value at the top of the stack, followed by a new line.
+	- Usage: pint
+	- If the stack is empty, print the error message L<line_number>: can't pint, stack empty, followed by a new line, and exit with the status EXIT_FAILURE
+ >
+	julien@ubuntu:~/monty$ cat bytecodes/06.m
+	push 1
+	pint
+	push 2
+	pint
+	push 3
+	pint
+	julien@ubuntu:~/monty$ ./monty bytecodes/06.m
+	1
+	2
+	3
+	julien@ubuntu:~/monty$ 
